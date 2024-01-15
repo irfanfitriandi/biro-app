@@ -2,6 +2,8 @@ import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
 const HomePage = lazy(() => import('../pages'))
+const PrivateRoutes = lazy(() => import('../components/PrivateRoutes'))
+
 //Auth pages
 const Login = lazy(() => import('../pages/auth/login'))
 const Register = lazy(() => import('../pages/auth/register'))
@@ -36,11 +38,11 @@ const routes = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <TouristList />,
+        element: <PrivateRoutes Component={() => <TouristList />} />,
       },
       {
         path: ':id',
-        element: <TouristDetail />,
+        element: <PrivateRoutes Component={() => <TouristDetail />} />,
       },
     ],
   },

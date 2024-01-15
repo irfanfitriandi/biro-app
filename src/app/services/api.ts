@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
 import { setAuthToken } from '../auth.slice'
 import { API_URL } from '../../utils/constants/biroapi'
 import { RootState } from '../store'
@@ -8,9 +9,8 @@ export const touristApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
     prepareHeaders: (headers, { getState }) => {
-      console.log('prepareHeaders is called')
       const token = (getState() as RootState).auth.token
-      console.log(token)
+
       if (token) {
         headers.set('Authorization', `Bearer ${token}`)
       }
@@ -46,7 +46,10 @@ export const touristApi = createApi({
       onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         try {
           const { data } = await queryFulfilled
-          dispatch(setAuthToken(data.data.Token))
+          const token = data.data.Token
+
+          dispatch(setAuthToken(token))
+          document.cookie = `token=${token}`
         } catch (error) {
           dispatch(setAuthToken(null))
         }

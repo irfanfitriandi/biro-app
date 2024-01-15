@@ -1,10 +1,11 @@
+import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import {
   useCreateLoginUserMutation,
   useGetTouristListQuery,
 } from '../app/services/api'
-import { useSelector } from 'react-redux'
 import { RootState } from '../app/store'
-import { NavLink } from 'react-router-dom'
 
 const App = () => {
   const [login] = useCreateLoginUserMutation()
@@ -18,6 +19,7 @@ const App = () => {
 
   const { data } = useGetTouristListQuery(1)
   console.log(data)
+
   const authState = useSelector((state: RootState) => state.auth)
   const cekData = () => {
     console.log(authState)

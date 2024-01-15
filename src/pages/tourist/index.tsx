@@ -1,9 +1,10 @@
+import { useSelector } from 'react-redux'
+
 import { RootState } from '../../app/store'
 import {
   useCreateLoginUserMutation,
   useGetTouristListQuery,
 } from '../../app/services/api'
-import { useSelector } from 'react-redux'
 
 const TouristList = () => {
   const [login] = useCreateLoginUserMutation()
@@ -17,6 +18,7 @@ const TouristList = () => {
 
   const { data } = useGetTouristListQuery(1)
   console.log(data)
+
   const authState = useSelector((state: RootState) => state.auth)
   const cekData = () => {
     console.log(authState)
