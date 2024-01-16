@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { useCreateLoginUserMutation } from '../../../app/services/api'
 
 import CardForm from '../../../components/Card/CardForm'
 import InputForm from '../../../components/UI/Input/InputForm'
@@ -9,10 +11,28 @@ const LoginPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [disabled, setDisabled] = useState(true)
+  const [login] = useCreateLoginUserMutation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (email && password) {
+      setDisabled(false)
+    } else {
+      setDisabled(true)
+    }
+  }, [email, password])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    login({
+      email,
+      password,
+    }).then(() => {
+      alert('Login Success')
+      navigate('/')
+    })
   }
+
   return (
     <div className="flex min-h-screen">
       <div className="relative hidden h-screen w-1/2 overflow-clip md:block">
@@ -41,7 +61,12 @@ const LoginPage = () => {
             />
 
             <div className="flex flex-col gap-2 pt-10">
-              <Button label="Login" sources="primary" type="submit" />
+              <Button
+                label="Login"
+                sources="primary"
+                type="submit"
+                disabled={disabled}
+              />
               <div className="text-center">Or</div>
               <Link to="/register">
                 <Button label="Register" sources="secondary" />

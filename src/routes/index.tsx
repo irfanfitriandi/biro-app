@@ -1,8 +1,9 @@
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
-const HomePage = lazy(() => import('../pages'))
 const PrivateRoutes = lazy(() => import('../components/PrivateRoutes'))
+const HomePage = lazy(() => import('../pages'))
+const Profile = lazy(() => import('../pages/profile'))
 
 //Auth pages
 const Login = lazy(() => import('../pages/auth/login'))
@@ -32,6 +33,10 @@ const routes = createBrowserRouter([
   {
     path: '/register',
     element: <Register />,
+  },
+  {
+    path: '/profile/:id',
+    element: <PrivateRoutes Component={() => <Profile />} />,
   },
   {
     path: '/tourist',

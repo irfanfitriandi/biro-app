@@ -9,7 +9,7 @@ const InputForm = ({ label, ...props }: IInputForm) => {
     <div className="space-y-1">
       <label className="text-lg font-medium">{label}</label>
       <input
-        className="bg-form w-full rounded-lg border py-2 px-3 text-black focus:outline-none"
+        className="bg-form w-full rounded-lg border px-3 py-2 text-black focus:outline-none"
         {...props}
       />
     </div>

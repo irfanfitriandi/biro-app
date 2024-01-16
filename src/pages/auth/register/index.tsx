@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { useCreateRegisterUserMutation } from '../../../app/services/api'
 
 import CardForm from '../../../components/Card/CardForm'
 import InputForm from '../../../components/UI/Input/InputForm'
@@ -10,9 +12,27 @@ const RegisterPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [disabled, setDisabled] = useState(true)
+  const [register] = useCreateRegisterUserMutation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (name && email && password) {
+      setDisabled(false)
+    } else {
+      setDisabled(true)
+    }
+  }, [name && email, password])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    register({
+      name,
+      email,
+      password,
+    }).then(() => {
+      alert('Register Success')
+      navigate('/login')
+    })
   }
   return (
     <div className="flex min-h-screen">
@@ -54,7 +74,12 @@ const RegisterPage = () => {
             </div>
 
             <div className="flex flex-col gap-2 pt-10">
-              <Button label="Register" sources="primary" type="submit" />
+              <Button
+                label="Register"
+                sources="primary"
+                type="submit"
+                disabled={disabled}
+              />
             </div>
           </>
         </CardForm>

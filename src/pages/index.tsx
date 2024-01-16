@@ -1,37 +1,32 @@
-import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import {
-  useCreateLoginUserMutation,
-  useGetTouristListQuery,
-} from '../app/services/api'
-import { RootState } from '../app/store'
+import Button from '../components/UI/Button'
+import ButtonLogOut from '../components/UI/Button/ButtonLogOut'
+import ButtonProfile from '../components/UI/Button/ButtonProfile'
 
-const App = () => {
-  const [login] = useCreateLoginUserMutation()
-
-  const submitLogin = () => {
-    login({
-      email: 'badu@gmail.com',
-      password: 'hahahihi',
-    })
-  }
-
-  const { data } = useGetTouristListQuery(1)
-  console.log(data)
-
-  const authState = useSelector((state: RootState) => state.auth)
-  const cekData = () => {
-    console.log(authState)
-  }
-
+const HomePage = () => {
   return (
-    <div className="flex flex-col">
-      <button onClick={submitLogin}>login</button>
-      <button onClick={cekData}>cek</button>
-      <NavLink to={'/tourist'}>tes</NavLink>
-    </div>
+    <>
+      <div className="relative flex min-h-screen w-full flex-col items-center justify-center bg-[url('/img/img-2.webp')] bg-cover">
+        <div className="absolute top-2 flex w-full justify-between px-4">
+          <ButtonProfile />
+          <ButtonLogOut />
+        </div>
+        <div className="max-w-xl">
+          <div>Embark on Unforgettable Journeys with Tourify!</div>
+          <p>
+            Welcome to a world of enchanting destinations, captivating cultures,
+            and unparalleled adventures. At Tourify, we redefine the way you
+            experience travel, making every trip a masterpiece of discovery.
+          </p>
+          <Link to="/tourist">
+            <Button label="Get Started" sources="primary" fit />
+          </Link>
+        </div>
+      </div>
+      <div className="min-h-screen bg-white"></div>
+    </>
   )
 }
 
-export default App
+export default HomePage

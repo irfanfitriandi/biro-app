@@ -47,9 +47,11 @@ export const touristApi = createApi({
         try {
           const { data } = await queryFulfilled
           const token = data.data.Token
+          const id = data.data.Id
 
           dispatch(setAuthToken(token))
           document.cookie = `token=${token}`
+          document.cookie = `id=${id}`
         } catch (error) {
           dispatch(setAuthToken(null))
         }
