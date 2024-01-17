@@ -51,7 +51,7 @@ const LoginPage = () => {
         <div className="absolute top-0 z-10 h-screen w-full bg-black opacity-10"></div>
       </div>
 
-      <div className="flex w-full items-center justify-center bg-[#eeebe3] bg-[url('/img/img-1.webp')] md:w-1/2 md:bg-[url('')]">
+      <div className="flex w-full items-center justify-center bg-[#eeebe3] bg-[url('/img/img-1.webp')] px-8 md:w-1/2 md:bg-[url('')]">
         <CardForm key={1} title="Login" handleSubmit={handleSubmit}>
           <>
             <InputForm

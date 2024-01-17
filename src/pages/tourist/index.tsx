@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react'
 import { useInfiniteScroll } from '../../hooks/use-infinite-scroll'
 import { useGetTouristListQuery } from '../../app/services/api'
 import { Tourist } from '../../utils/types/tourist'
+import LoadingSpinner from '../../components/UI/LoadingSpinner'
+import CardTourist from '../../components/Card/CardTourist'
+import Header from '../../components/Layout/Header'
 
 const TouristList = () => {
   const [page, setPage] = useState(1)
@@ -25,18 +28,15 @@ const TouristList = () => {
   })
 
   return (
-    <div className="relative flex flex-col">
-      {touristList.map((el) => (
-        <div key={el.createdat} className="h-36">
-          {el.tourist_name}
-        </div>
-      ))}
+    <div className="srelative flex flex-col bg-[url('/img/bg-1.webp')] bg-auto">
+      <Header isFixed />
+      <div className="mx-auto mt-20 grid max-w-[1200px] grid-cols-1 gap-4 bg-[#FFD05B] px-8 py-6 md:grid-cols-2">
+        {touristList.map((data) => (
+          <CardTourist key={data.createdat} data={data} />
+        ))}
 
-      {isFetching && (
-        <div className="absolute top-0 flex h-24 items-center justify-center">
-          Asuuuuuuuuuuuuuuuuuuuu
-        </div>
-      )}
+        {isFetching && <LoadingSpinner loadingPage={false} />}
+      </div>
     </div>
   )
 }
