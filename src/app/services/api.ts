@@ -4,7 +4,7 @@ import { RootState } from '../store'
 import { setAuthToken } from '../auth.slice'
 import { API_URL } from '../../utils/constants/biroapi'
 import { DataUser } from '../../utils/types/user'
-import { TouristListRes } from '../../utils/types/tourist'
+import { Tourist, TouristListRes } from '../../utils/types/tourist'
 
 export const touristApi = createApi({
   reducerPath: 'touristApi',
@@ -92,13 +92,10 @@ export const touristApi = createApi({
       },
       providesTags: ['Tourist'],
     }),
-    getTouristDetail: build.query({
+    getTouristDetail: build.query<Tourist, string>({
       query: (id) => {
         return {
-          url: 'tourist',
-          params: {
-            id,
-          },
+          url: `tourist/${id}`,
         }
       },
       providesTags: ['Tourist'],

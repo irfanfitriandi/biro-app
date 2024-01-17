@@ -32,7 +32,7 @@ const TouristList = () => {
       <Header isFixed />
       <div className="mx-auto mt-20 grid max-w-[1200px] grid-cols-1 gap-4 bg-[#FFD05B] px-8 py-6 md:grid-cols-2">
         {touristList.map((data) => (
-          <CardTourist key={data.createdat} data={data} />
+          <CardTourist key={data.id} data={data} />
         ))}
 
         {isFetching && <LoadingSpinner loadingPage={false} />}

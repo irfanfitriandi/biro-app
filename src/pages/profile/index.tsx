@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
-
 import { useGetLoginUserInfoQuery } from '../../app/services/api'
+
 import Logo from '../../components/Logo'
 import ButtonAuth from '../../components/ButtonAuth'
 
@@ -33,10 +33,10 @@ const ProfilePage = () => {
           />
         </div>
         <div className="flex flex-col items-center">
-          <div className="rounded-b-lg rounded-t-3xl bg-white px-3 py-1 font-bold capitalize">
+          <div className="rounded-3xl bg-white px-3 py-1 font-bold capitalize">
             {data?.name}
           </div>
-          <div className="rounded-3xl bg-white px-3 py-1 text-sm font-medium lowercase">
+          <div className="-mt-1 rounded-3xl bg-white px-3 py-1 text-sm font-medium lowercase">
             {data?.email}
           </div>
         </div>

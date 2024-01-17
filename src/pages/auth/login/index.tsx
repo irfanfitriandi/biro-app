@@ -30,14 +30,23 @@ const LoginPage = () => {
     login({
       email,
       password,
-    }).then(() => {
-      alert('Login Success')
-      if (queryParams.get('callback')) {
-        navigate(String(queryParams.get('callback')))
-      } else {
-        navigate('/')
-      }
     })
+      .then((data) => {
+        const { error } = data as any
+        if (error) {
+          alert('Login Failed')
+        } else {
+          alert('Login Success')
+          if (queryParams.get('callback')) {
+            navigate(String(queryParams.get('callback')))
+          } else {
+            navigate('/')
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   return (
