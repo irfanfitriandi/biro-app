@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <>
       <div className="relative flex min-h-screen w-full flex-col items-center justify-center bg-[url('/img/img-2.webp')] bg-cover">
-        <Header />
+        <Header isFixed={false} />
         <div className="max-w-xl">
           <div>Embark on Unforgettable Journeys with Tourify!</div>
           <p>

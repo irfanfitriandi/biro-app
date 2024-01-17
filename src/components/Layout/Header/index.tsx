@@ -3,7 +3,7 @@ import { RootState } from '../../../app/store'
 
 import ButtonProfile from '../../ButtonProfile'
 import ButtonAuth from '../../ButtonAuth'
-import { Link } from 'react-router-dom'
+import Logo from '../../Logo'
 
 interface IHeader {
   isFixed: boolean
@@ -15,15 +15,11 @@ const Header = ({ isFixed }: IHeader) => {
 
   return (
     <header
-      className={`${isFixed ? 'fixed h-20 bg-white' : 'absolute top-2'} z-10 flex w-full px-4 ${isLogin ? 'justify-between' : 'justify-end'} items-center`}
+      className={`${isFixed ? 'fixed h-20 bg-white' : 'absolute top-4'} z-10 flex w-full px-4 ${isLogin ? 'justify-between' : 'justify-end'} items-center`}
     >
       {isLogin && <ButtonProfile />}
 
-      {isFixed && (
-        <Link to="/">
-          <img src="/biro-icon.svg" alt="" width={50} />
-        </Link>
-      )}
+      {isFixed && <Logo />}
 
       <ButtonAuth />
     </header>

@@ -9,7 +9,7 @@ interface ILayout {
 const Layout = ({ children }: ILayout) => {
   return (
     <>
-      <Header />
+      <Header isFixed />
       <main>{children}</main>
       <Footer />
     </>
