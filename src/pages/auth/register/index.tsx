@@ -21,7 +21,7 @@ const RegisterPage = () => {
     } else {
       setDisabled(true)
     }
-  }, [name && email, password])
+  }, [name, email, password])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

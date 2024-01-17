@@ -2,7 +2,7 @@ import { useCookies } from 'react-cookie'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { setAuthToken } from '../../../../app/auth.slice'
+import { setAuthToken } from '../../app/auth.slice'
 
 const ButtonLogOut = () => {
   const [, , removeCookie] = useCookies(['token', 'id'])

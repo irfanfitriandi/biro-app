@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { useCreateLoginUserMutation } from '../../../app/services/api'
 
@@ -12,7 +12,10 @@ const LoginPage = () => {
   const [password, setPassword] = useState('')
   const [disabled, setDisabled] = useState(true)
   const [login] = useCreateLoginUserMutation()
+
   const navigate = useNavigate()
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
 
   useEffect(() => {
     if (email && password) {
@@ -29,7 +32,11 @@ const LoginPage = () => {
       password,
     }).then(() => {
       alert('Login Success')
-      navigate('/')
+      if (queryParams.get('callback')) {
+        navigate(String(queryParams.get('callback')))
+      } else {
+        navigate('/')
+      }
     })
   }
 

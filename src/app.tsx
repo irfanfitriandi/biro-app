@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import routes from '../src/routes'
-import Loading from './components/UI/Loading'
+import Loading from './components/UI/LoadingSpinner'
 import { RootState } from './app/store'
 import { setAuthToken } from './app/auth.slice'
 

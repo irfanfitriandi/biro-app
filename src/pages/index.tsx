@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 
 import Button from '../components/UI/Button'
-import ButtonLogOut from '../components/UI/Button/ButtonLogOut'
-import ButtonProfile from '../components/UI/Button/ButtonProfile'
+import ButtonLogOut from '../components/ButtonLogOut'
+import ButtonProfile from '../components/ButtonProfile'
 
 const HomePage = () => {
   return (

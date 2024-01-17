@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { useInfiniteScroll } from '../../use-infinite-scroll'
+import { useInfiniteScroll } from '../../hooks/use-infinite-scroll'
 import { useGetTouristListQuery } from '../../app/services/api'
 import { Tourist } from '../../utils/types/tourist'
 
@@ -25,12 +25,18 @@ const TouristList = () => {
   })
 
   return (
-    <div className="flex flex-col">
-      {touristList.map((el, idx) => (
-        <div key={idx} className="h-96">
+    <div className="relative flex flex-col">
+      {touristList.map((el) => (
+        <div key={el.createdat} className="h-36">
           {el.tourist_name}
         </div>
       ))}
+
+      {isFetching && (
+        <div className="absolute top-0 flex h-24 items-center justify-center">
+          Asuuuuuuuuuuuuuuuuuuuu
+        </div>
+      )}
     </div>
   )
 }
