@@ -1,33 +1,36 @@
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 
-import { RootState } from '../../app/store'
-import {
-  useCreateLoginUserMutation,
-  useGetTouristListQuery,
-} from '../../app/services/api'
+import { useInfiniteScroll } from '../../use-infinite-scroll'
+import { useGetTouristListQuery } from '../../app/services/api'
+import { Tourist } from '../../utils/types/tourist'
 
 const TouristList = () => {
-  const [login] = useCreateLoginUserMutation()
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [touristList, setTouristList] = useState<Tourist[]>([])
+  const { data, isFetching } = useGetTouristListQuery(page)
 
-  const submitLogin = () => {
-    login({
-      email: 'badu@gmail.com',
-      password: 'hahahihi',
-    })
-  }
+  useEffect(() => {
+    if (data) {
+      setTouristList(data.data)
+      setTotalPages(data.total_pages)
+    }
+  }, [data])
 
-  const { data } = useGetTouristListQuery(1)
-  console.log(data)
-
-  const authState = useSelector((state: RootState) => state.auth)
-  const cekData = () => {
-    console.log(authState)
-  }
+  useInfiniteScroll({
+    isFetching,
+    totalPages,
+    page,
+    setPage,
+  })
 
   return (
     <div className="flex flex-col">
-      <button onClick={submitLogin}>login</button>
-      <button onClick={cekData}>cek</button>
+      {touristList.map((el, idx) => (
+        <div key={idx} className="h-96">
+          {el.tourist_name}
+        </div>
+      ))}
     </div>
   )
 }

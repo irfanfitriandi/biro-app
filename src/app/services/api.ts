@@ -1,8 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+import { RootState } from '../store'
 import { setAuthToken } from '../auth.slice'
 import { API_URL } from '../../utils/constants/biroapi'
-import { RootState } from '../store'
+import { DataUser } from '../../utils/types/user'
+import { TouristListRes } from '../../utils/types/tourist'
 
 export const touristApi = createApi({
   reducerPath: 'touristApi',
@@ -57,19 +59,16 @@ export const touristApi = createApi({
         }
       },
     }),
-    getLoginUserInfo: build.query({
+    getLoginUserInfo: build.query<DataUser, string>({
       query: (id) => {
         return {
-          url: 'users',
-          params: {
-            id,
-          },
+          url: `users/${id}`,
         }
       },
     }),
 
     //Tourist
-    getTouristList: build.query({
+    getTouristList: build.query<TouristListRes, number>({
       query: (page) => {
         return {
           url: 'tourist',
@@ -82,8 +81,8 @@ export const touristApi = createApi({
         return endpointName
       },
       merge: (currentCache, newItems) => {
-        if (newItems.page > 1) {
-          currentCache.results.push(...newItems.results)
+        if (Number(newItems.page) > 1) {
+          currentCache.data.push(...newItems.data)
           return
         }
         return newItems
