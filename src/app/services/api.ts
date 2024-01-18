@@ -4,7 +4,7 @@ import { RootState } from '../store'
 import { setAuthToken } from '../auth.slice'
 import { API_URL } from '../../utils/constants/biroapi'
 import { DataUser } from '../../utils/types/user'
-import { Tourist, TouristListRes } from '../../utils/types/tourist'
+import { Tourist, TouristForm, TouristListRes } from '../../utils/types/tourist'
 
 export const touristApi = createApi({
   reducerPath: 'touristApi',
@@ -100,6 +100,18 @@ export const touristApi = createApi({
       },
       providesTags: ['Tourist'],
     }),
+    createTourist: build.mutation<Tourist, TouristForm>({
+      query: (payload) => {
+        return {
+          url: 'tourist',
+          method: 'POST',
+          body: payload,
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        }
+      },
+    }),
   }),
 })
 
@@ -109,4 +121,5 @@ export const {
   useGetLoginUserInfoQuery,
   useGetTouristDetailQuery,
   useGetTouristListQuery,
+  useCreateTouristMutation,
 } = touristApi

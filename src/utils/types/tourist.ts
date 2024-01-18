@@ -15,3 +15,9 @@ export interface TouristListRes {
   total_pages: number
   data: Tourist[]
 }
+
+export interface TouristForm {
+  tourist_email: string
+  tourist_location: string
+  tourist_name: string
+}

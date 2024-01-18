@@ -2,14 +2,24 @@ import { ButtonHTMLAttributes } from 'react'
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
-  sources: 'primary' | 'secondary'
+  sources: 'primary' | 'secondary' | 'danger'
   fit?: boolean
 }
 
 const Button = ({ label, sources, fit, ...props }: IButton) => {
+  const buttonType = (sources: 'primary' | 'secondary' | 'danger') => {
+    switch (sources) {
+      case 'primary':
+        return 'bg-[#FFD05B] hover:bg-yellow-500'
+      case 'secondary':
+        return 'bg-[#54C0EB] hover:bg-sky-500'
+      case 'danger':
+        return 'bg-[#FF7058] hover:bg-rose-500'
+    }
+  }
   return (
     <button
-      className={`${sources === 'primary' ? 'bg-[#FFD05B] hover:bg-yellow-500' : 'bg-[#54C0EB] hover:bg-sky-500'} ${fit ? 'w-fit' : 'w-full'} rounded-full px-4 py-2 font-medium text-white disabled:bg-gray-200`}
+      className={`${buttonType(sources)} ${fit ? 'w-fit' : 'w-full'} rounded-full px-4 py-2 font-medium text-white disabled:bg-gray-200`}
       {...props}
     >
       {label}

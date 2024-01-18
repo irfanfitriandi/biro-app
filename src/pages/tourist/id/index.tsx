@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useGetTouristDetailQuery } from '../../../app/services/api'
 
 import Logo from '../../../components/Logo'
+import Button from '../../../components/UI/Button'
 
 const TouristDetail = () => {
   const { id } = useParams()
@@ -38,6 +39,11 @@ const TouristDetail = () => {
           <div className="-mt-1 rounded-3xl bg-white px-3 py-1 text-sm font-medium lowercase">
             {data?.tourist_email}
           </div>
+        </div>
+
+        <div className="flex w-full gap-2 px-10">
+          <Button label="Edit" sources="secondary" fit={false} />
+          <Button label="Delete" sources="danger" fit={false} />
         </div>
       </div>
     </div>

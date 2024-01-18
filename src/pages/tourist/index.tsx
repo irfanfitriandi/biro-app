@@ -1,27 +1,37 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { useInfiniteScroll } from '../../hooks/use-infinite-scroll'
-import { useGetTouristListQuery } from '../../app/services/api'
+import {
+  useCreateTouristMutation,
+  useGetTouristListQuery,
+} from '../../app/services/api'
 import { Tourist } from '../../utils/types/tourist'
+import { ErrorAPI } from '../../utils/types/api'
+
 import LoadingSpinner from '../../components/UI/LoadingSpinner'
 import CardTourist from '../../components/Card/CardTourist'
 import Header from '../../components/Layout/Header'
 import CardForm from '../../components/Card/CardForm'
 import InputForm from '../../components/UI/Input/InputForm'
 import Button from '../../components/UI/Button'
+import Modal from '../../components/Modal'
 
 const TouristList = () => {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
-  const [modalAddTourist, setModalAddTourist] = useState(false)
   const [touristList, setTouristList] = useState<Tourist[]>([])
   const { data, isFetching } = useGetTouristListQuery(page)
 
+  //Add Tourist
+  const [modalAddTourist, setModalAddTourist] = useState(false)
   const [formTourist, setFormTourist] = useState({
     tourist_email: '',
     tourist_location: '',
     tourist_name: '',
   })
+  const [addTourist] = useCreateTouristMutation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (data) {
@@ -46,6 +56,17 @@ const TouristList = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    addTourist(formTourist).then((res) => {
+      const { data } = res as { data: Tourist }
+      const { error } = res as ErrorAPI
+
+      if (error) {
+        alert('Add Tourist Failed')
+      } else if (data) {
+        alert('Add Tourist Success')
+        navigate(`/tourist/${data.id}`)
+      }
+    })
   }
 
   return (
@@ -67,15 +88,7 @@ const TouristList = () => {
         <img src="/ic/add-user.svg" alt="add-user" className="my-1 ml-2 w-12" />
       </button>
 
-      <button
-        hidden={!modalAddTourist}
-        onClick={() => setModalAddTourist(!modalAddTourist)}
-        className="fixed z-20 h-full w-full bg-gray-500/40"
-      />
-
-      <div
-        className={`fixed top-36 z-30 max-w-xs justify-center transition-all duration-300 ease-in-out ${!modalAddTourist ? 'translate-y-32 opacity-0' : 'block translate-y-0 opacity-100'}`}
-      >
+      <Modal showModal={modalAddTourist} setShowModal={setModalAddTourist}>
         <CardForm title="Add Tourist" handleSubmit={handleSubmit}>
           <>
             <InputForm
@@ -111,7 +124,7 @@ const TouristList = () => {
             </div>
           </>
         </CardForm>
-      </div>
+      </Modal>
     </div>
   )
 }

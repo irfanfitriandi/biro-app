@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { useCreateLoginUserMutation } from '../../../app/services/api'
+import { ErrorAPI } from '../../../utils/types/api'
 
 import CardForm from '../../../components/Card/CardForm'
 import InputForm from '../../../components/UI/Input/InputForm'
@@ -31,8 +32,9 @@ const LoginPage = () => {
       email,
       password,
     })
-      .then((data) => {
-        const { error } = data as any
+      .then((res) => {
+        const { error } = res as ErrorAPI
+
         if (error) {
           alert('Login Failed')
         } else {
