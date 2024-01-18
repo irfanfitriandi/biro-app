@@ -61,19 +61,21 @@ const LoginPage = () => {
       </div>
 
       <div className="flex w-full items-center justify-center bg-[#eeebe3] bg-[url('/img/img-1.webp')] px-8 md:w-1/2 md:bg-[url('')]">
-        <CardForm key={1} title="Login" handleSubmit={handleSubmit}>
+        <CardForm title="Login" handleSubmit={handleSubmit}>
           <>
             <InputForm
               label="Email"
               placeholder="Email"
               type="text"
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <InputForm
               label="Password"
               placeholder="Password"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
 
             <div className="flex flex-col gap-2 pt-10">

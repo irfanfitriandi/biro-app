@@ -53,18 +53,21 @@ const RegisterPage = () => {
               placeholder="Name"
               type="text"
               onChange={(e) => setName(e.target.value)}
+              required
             />
             <InputForm
               label="Email"
               placeholder="Email"
               type="text"
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <InputForm
               label="Password"
               placeholder="Password"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <div className="text-sm">
               Already have an account?
