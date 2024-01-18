@@ -21,7 +21,9 @@ const TouristList = () => {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [touristList, setTouristList] = useState<Tourist[]>([])
-  const { data, isFetching } = useGetTouristListQuery(page)
+  const { data, isFetching } = useGetTouristListQuery(page, {
+    refetchOnMountOrArgChange: true,
+  })
 
   //Add Tourist
   const [modalAddTourist, setModalAddTourist] = useState(false)

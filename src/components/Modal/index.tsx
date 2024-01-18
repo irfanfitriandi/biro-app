@@ -10,7 +10,7 @@ const Modal = ({ children, showModal, setShowModal }: IModal) => {
       <button
         hidden={!showModal}
         onClick={() => setShowModal(!showModal)}
-        className="fixed z-20 h-full w-full bg-gray-500/40"
+        className="fixed z-20 h-screen w-full bg-gray-500/40"
       />
 
       <div

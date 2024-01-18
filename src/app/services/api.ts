@@ -112,6 +112,26 @@ export const touristApi = createApi({
         }
       },
     }),
+    editTourist: build.mutation<Tourist, { payload: TouristForm; id: string }>({
+      query: ({ payload, id }) => {
+        return {
+          url: `tourist/${id}`,
+          method: 'PUT',
+          body: payload,
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        }
+      },
+    }),
+    deleteTourist: build.mutation<Tourist, string>({
+      query: (id) => {
+        return {
+          url: `tourist/${id}`,
+          method: 'DELETE',
+        }
+      },
+    }),
   }),
 })
 
@@ -122,4 +142,6 @@ export const {
   useGetTouristDetailQuery,
   useGetTouristListQuery,
   useCreateTouristMutation,
+  useEditTouristMutation,
+  useDeleteTouristMutation,
 } = touristApi

@@ -19,7 +19,7 @@ const Button = ({ label, sources, fit, ...props }: IButton) => {
   }
   return (
     <button
-      className={`${buttonType(sources)} ${fit ? 'w-fit' : 'w-full'} rounded-full px-4 py-2 font-medium text-white disabled:bg-gray-200`}
+      className={`${buttonType(sources)} ${fit ? 'w-fit' : 'w-full'} rounded-full border border-black/5 px-4 py-2 font-medium text-white shadow-md shadow-black/20 disabled:bg-gray-200`}
       {...props}
     >
       {label}
