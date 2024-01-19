@@ -3,11 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { useCreateRegisterUserMutation } from '../../../app/services/api'
-import {
-  setMessageToast,
-  setShowToast,
-  setStatusToast,
-} from '../../../app/reducers/toast.slice'
+import { setToast } from '../../../app/reducers/toast.slice'
 
 import CardForm from '../../../components/Card/CardForm'
 import InputForm from '../../../components/UI/Input/InputForm'
@@ -37,9 +33,13 @@ const RegisterPage = () => {
       email,
       password,
     }).then(() => {
-      dispatch(setMessageToast('Register Success'))
-      dispatch(setStatusToast('success'))
-      dispatch(setShowToast(true))
+      dispatch(
+        setToast({
+          messageToast: `Register Success`,
+          statusToast: 'success',
+          showToast: true,
+        }),
+      )
       navigate('/login')
     })
   }

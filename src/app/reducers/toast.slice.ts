@@ -1,28 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { IToast } from '../../components/Toast'
 
-const initialState = {
-  showToast: false,
-  messageToast: '',
-  statusToast: 'success' as 'success' | 'failed',
+interface PayloadToast {
+  showToast: boolean
+  statusToast: 'success' | 'failed'
+  messageToast: string
+}
+
+const initialState: IToast = {
+  toast: {
+    showToast: false,
+    messageToast: '',
+    statusToast: 'success' as 'success' | 'failed',
+  },
 }
 
 const toastSlice = createSlice({
   name: 'toast',
   initialState,
   reducers: {
-    setShowToast: (state, action) => {
-      state.showToast = action.payload
-    },
-    setMessageToast: (state, action) => {
-      state.messageToast = action.payload
-    },
-    setStatusToast: (state, action) => {
-      state.statusToast = action.payload
+    setToast: (state, action: PayloadAction<PayloadToast>) => {
+      state.toast = action.payload
     },
   },
 })
 
-export const { setShowToast, setMessageToast, setStatusToast } =
-  toastSlice.actions
+export const { setToast } = toastSlice.actions
 
 export default toastSlice.reducer

@@ -25,11 +25,7 @@ const App = () => {
   return (
     <Suspense fallback={<Loading loadingPage />}>
       <RouterProvider router={routes} />
-      <Toast
-        isShow={toastState.showToast}
-        status={toastState.statusToast}
-        message={toastState.messageToast}
-      />
+      <Toast toast={toastState.toast} />
     </Suspense>
   )
 }

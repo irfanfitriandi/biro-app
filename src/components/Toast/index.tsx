@@ -1,31 +1,37 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { setShowToast } from '../../app/reducers/toast.slice'
+import { useDispatch, useSelector } from 'react-redux'
+import { setToast } from '../../app/reducers/toast.slice'
+import { RootState } from '../../app/store'
 
 export interface IToast {
-  isShow: boolean
-  status: 'success' | 'failed'
-  message: string
+  toast: {
+    showToast: boolean
+    statusToast: 'success' | 'failed'
+    messageToast: string
+  }
 }
 
-const Toast = ({ isShow, status, message }: IToast) => {
+const Toast = ({ toast }: IToast) => {
   const dispatch = useDispatch()
+  const toastState = useSelector((state: RootState) => state.toast)
 
   useEffect(() => {
-    if (isShow) {
+    if (toast.showToast) {
       setTimeout(() => {
-        dispatch(setShowToast(false))
+        dispatch(setToast({ ...toastState.toast, showToast: false }))
       }, 3000)
     }
-  }, [isShow, dispatch])
+  }, [toast.showToast, dispatch, toastState.toast])
 
   return (
     <button
-      onClick={() => dispatch(setShowToast(false))}
-      className={`${isShow ? 'translate-x-0' : 'translate-x-[150%]'} ${status === 'success' ? 'bg-[#54C0EB]' : 'bg-[#FF7058] '} fixed bottom-36 right-4 w-fit cursor-pointer whitespace-nowrap rounded-md bg-[#54C0EB] py-2 pl-4 pr-10 text-start text-white transition-transform duration-500 ease-in-out`}
+      onClick={() =>
+        dispatch(setToast({ ...toastState.toast, showToast: false }))
+      }
+      className={`${toast.showToast ? 'translate-x-0' : 'translate-x-[150%]'} ${toast.statusToast === 'success' ? 'bg-[#54C0EB]' : 'bg-[#FF7058] '} fixed bottom-36 right-4 w-fit cursor-pointer whitespace-nowrap rounded-md bg-[#54C0EB] py-2 pl-4 pr-10 text-start text-white transition-transform duration-500 ease-in-out`}
     >
-      <div className="fp font-medium capitalize">{status}</div>
-      <span className="text-sm">{message}</span>
+      <div className="fp font-medium capitalize">{toast.statusToast}</div>
+      <span className="text-sm">{toast.messageToast}</span>
     </button>
   )
 }

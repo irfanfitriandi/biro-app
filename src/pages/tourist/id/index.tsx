@@ -16,11 +16,7 @@ import Modal from '../../../components/Modal'
 import CardForm from '../../../components/Card/CardForm'
 import InputForm from '../../../components/UI/Input/InputForm'
 import { useDispatch } from 'react-redux'
-import {
-  setMessageToast,
-  setShowToast,
-  setStatusToast,
-} from '../../../app/reducers/toast.slice'
+import { setToast } from '../../../app/reducers/toast.slice'
 
 const TouristDetail = () => {
   const [tourist, setTourist] = useState<Tourist>()
@@ -61,13 +57,21 @@ const TouristDetail = () => {
       const { error } = res as ErrorAPI
 
       if (error) {
-        dispatch(setMessageToast('Edit Tourist Failed'))
-        dispatch(setStatusToast('failed'))
-        dispatch(setShowToast(true))
+        dispatch(
+          setToast({
+            messageToast: `Edit Tourist Failed`,
+            statusToast: 'failed',
+            showToast: true,
+          }),
+        )
       } else if (data) {
-        dispatch(setMessageToast('Edit Tourist Success'))
-        dispatch(setStatusToast('success'))
-        dispatch(setShowToast(true))
+        dispatch(
+          setToast({
+            messageToast: `Edit Tourist Success`,
+            statusToast: 'success',
+            showToast: true,
+          }),
+        )
         navigate(`/tourist/${data.id}`)
         setTourist(data)
         setModalEditTourist(!modalEditTourist)
@@ -81,13 +85,21 @@ const TouristDetail = () => {
       const { error } = res as ErrorAPI
 
       if (error) {
-        dispatch(setMessageToast('Delete Tourist Failed'))
-        dispatch(setStatusToast('failed'))
-        dispatch(setShowToast(true))
+        dispatch(
+          setToast({
+            messageToast: `Delete Tourist Failed`,
+            statusToast: 'failed',
+            showToast: true,
+          }),
+        )
       } else if (data) {
-        dispatch(setMessageToast('Delete Tourist Success'))
-        dispatch(setStatusToast('success'))
-        dispatch(setShowToast(true))
+        dispatch(
+          setToast({
+            messageToast: `Delete Tourist Success`,
+            statusToast: 'success',
+            showToast: true,
+          }),
+        )
         navigate(`/tourist/${data.id}`)
         navigate('/tourist')
       }

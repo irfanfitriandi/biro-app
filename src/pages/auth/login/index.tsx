@@ -8,11 +8,7 @@ import { ErrorAPI } from '../../../utils/types/api'
 import CardForm from '../../../components/Card/CardForm'
 import InputForm from '../../../components/UI/Input/InputForm'
 import Button from '../../../components/UI/Button'
-import {
-  setMessageToast,
-  setShowToast,
-  setStatusToast,
-} from '../../../app/reducers/toast.slice'
+import { setToast } from '../../../app/reducers/toast.slice'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
@@ -44,13 +40,21 @@ const LoginPage = () => {
         const { error } = res as ErrorAPI
 
         if (error) {
-          dispatch(setMessageToast('Login Failed'))
-          dispatch(setStatusToast('failed'))
-          dispatch(setShowToast(true))
+          dispatch(
+            setToast({
+              messageToast: `Login Failed`,
+              statusToast: 'failed',
+              showToast: true,
+            }),
+          )
         } else {
-          dispatch(setMessageToast('Login Success'))
-          dispatch(setStatusToast('success'))
-          dispatch(setShowToast(true))
+          dispatch(
+            setToast({
+              messageToast: `Login Success`,
+              statusToast: 'success',
+              showToast: true,
+            }),
+          )
           if (queryParams.get('callback')) {
             navigate(String(queryParams.get('callback')))
           } else {

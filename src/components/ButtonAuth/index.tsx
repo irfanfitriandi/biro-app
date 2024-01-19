@@ -6,11 +6,7 @@ import { setAuthToken } from '../../app/reducers/auth.slice'
 import { RootState } from '../../app/store'
 
 import Button from '../UI/Button'
-import {
-  setMessageToast,
-  setShowToast,
-  setStatusToast,
-} from '../../app/reducers/toast.slice'
+import { setToast } from '../../app/reducers/toast.slice'
 
 const ButtonAuth = () => {
   const [, , removeCookie] = useCookies(['token', 'id'])
@@ -20,9 +16,13 @@ const ButtonAuth = () => {
   const isLogin = !!authState.token
 
   const handleLogOut = () => {
-    dispatch(setMessageToast('You`ve been logged out'))
-    dispatch(setStatusToast('success'))
-    dispatch(setShowToast(true))
+    dispatch(
+      setToast({
+        messageToast: `You've been logged out`,
+        statusToast: 'success',
+        showToast: true,
+      }),
+    )
     dispatch(setAuthToken(null))
     removeCookie('token')
     removeCookie('id')

@@ -17,11 +17,7 @@ import CardForm from '../../components/Card/CardForm'
 import InputForm from '../../components/UI/Input/InputForm'
 import Button from '../../components/UI/Button'
 import Modal from '../../components/Modal'
-import {
-  setMessageToast,
-  setShowToast,
-  setStatusToast,
-} from '../../app/reducers/toast.slice'
+import { setToast } from '../../app/reducers/toast.slice'
 
 const TouristList = () => {
   const [page, setPage] = useState(1)
@@ -70,13 +66,21 @@ const TouristList = () => {
       const { error } = res as ErrorAPI
 
       if (error) {
-        dispatch(setMessageToast('Add Tourist Failed'))
-        dispatch(setStatusToast('failed'))
-        dispatch(setShowToast(true))
+        dispatch(
+          setToast({
+            messageToast: `Add Tourist Failed`,
+            statusToast: 'failed',
+            showToast: true,
+          }),
+        )
       } else if (data) {
-        dispatch(setMessageToast('Add Tourist Success'))
-        dispatch(setStatusToast('success'))
-        dispatch(setShowToast(true))
+        dispatch(
+          setToast({
+            messageToast: `Add Tourist Success`,
+            statusToast: 'success',
+            showToast: true,
+          }),
+        )
         navigate(`/tourist/${data.id}`)
       }
     })
