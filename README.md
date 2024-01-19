@@ -3,6 +3,7 @@
 ![image](https://github.com/irfanfitriandi/tourist-app/assets/119382082/72a30581-119d-43e3-8600-4526279f8521)
 
 This is a single page app with Mobile First Approach about tourist list, built using React.js, TypeScript, and Tailwind CSS.
+- Link: [Tourify](https://tourify-app.vercel.app/)
 
 ## Feature
 - Users can Register and Login
@@ -12,7 +13,7 @@ This is a single page app with Mobile First Approach about tourist list, built u
 - Logged in users can add new tourist
 - Infinite Scroll for pagination in tourist list page
 
-- ## Run Locally
+## Run Locally
 
 - Clone the project from this repository.
 
