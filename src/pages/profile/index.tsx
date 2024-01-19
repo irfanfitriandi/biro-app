@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useGetLoginUserInfoQuery } from '../../app/services/api'
+import { useTitle } from '../../hooks/use-title-head'
 
 import Logo from '../../components/Logo'
 import ButtonAuth from '../../components/ButtonAuth'
@@ -9,6 +10,7 @@ const ProfilePage = () => {
   const navigate = useNavigate()
 
   const { data } = useGetLoginUserInfoQuery(String(id))
+  useTitle(`${data?.name}'s Profile | Tourify`)
 
   return (
     <div className="h-screen overflow-clip bg-[url('/img/bg-1.webp')]">

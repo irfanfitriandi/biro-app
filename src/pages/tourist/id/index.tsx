@@ -5,6 +5,7 @@ import {
   useEditTouristMutation,
   useGetTouristDetailQuery,
 } from '../../../app/services/api'
+import { useTitle } from '../../../hooks/use-title-head'
 
 import { Tourist } from '../../../utils/types/tourist'
 import { ErrorAPI } from '../../../utils/types/api'
@@ -38,6 +39,7 @@ const TouristDetail = () => {
   })
   const [editTourist] = useEditTouristMutation()
   const [deleteTourist] = useDeleteTouristMutation()
+  useTitle(`${data?.tourist_name} Tourist | Tourify`)
 
   useEffect(() => {
     if (data) {
