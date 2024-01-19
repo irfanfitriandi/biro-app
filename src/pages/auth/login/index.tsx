@@ -80,7 +80,7 @@ const LoginPage = () => {
             <InputForm
               label="Email"
               placeholder="Email"
-              type="text"
+              type="email"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
