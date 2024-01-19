@@ -1,30 +1,42 @@
-# React + TypeScript + Vite
+# Tourify - Tourist App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![image](https://github.com/irfanfitriandi/tourist-app/assets/119382082/72a30581-119d-43e3-8600-4526279f8521)
 
-Currently, two official plugins are available:
+This is a single page app with Mobile First Approach about tourist list, built using React.js, TypeScript, and Tailwind CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Feature
+- Users can Register and Login
+- Private routes and callback url to previous page after user login
+- Logged in users can access tourist list page
+- Logged in users can view the detail of tourist and edit or delete tourist
+- Logged in users can add new tourist
+- Infinite Scroll for pagination in tourist list page
 
-## Expanding the ESLint configuration
+- ## Run Locally
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Clone the project from this repository.
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Install dependencies
+
+```bash
+  pnpm install or yarn install or npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Start the server
+
+```bash
+  pnpm dev or yarn dev or npm run dev
+```
+
+This will start the development server at http://localhost:5173. You can open this URL in your browser to view the website.
+
+## Tech Stack
+
+This project is built using the following technologies:
+
+- Typescript
+- React.js
+- Tailwind CSS
+- Redux Toolkit
+- RTK Query
