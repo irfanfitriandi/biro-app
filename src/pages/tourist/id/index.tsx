@@ -61,11 +61,11 @@ const TouristDetail = () => {
       const { error } = res as ErrorAPI
 
       if (error) {
-        dispatch(setMessageToast('Add Tourist Failed'))
+        dispatch(setMessageToast('Edit Tourist Failed'))
         dispatch(setStatusToast('failed'))
         dispatch(setShowToast(true))
       } else if (data) {
-        dispatch(setMessageToast('Add Tourist Success'))
+        dispatch(setMessageToast('Edit Tourist Success'))
         dispatch(setStatusToast('success'))
         dispatch(setShowToast(true))
         navigate(`/tourist/${data.id}`)
@@ -81,11 +81,11 @@ const TouristDetail = () => {
       const { error } = res as ErrorAPI
 
       if (error) {
-        dispatch(setMessageToast('Add Tourist Failed'))
+        dispatch(setMessageToast('Delete Tourist Failed'))
         dispatch(setStatusToast('failed'))
         dispatch(setShowToast(true))
       } else if (data) {
-        dispatch(setMessageToast('Add Tourist Success'))
+        dispatch(setMessageToast('Delete Tourist Success'))
         dispatch(setStatusToast('success'))
         dispatch(setShowToast(true))
         navigate(`/tourist/${data.id}`)
