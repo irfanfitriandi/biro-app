@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import { useInfiniteScroll } from '../../hooks/use-infinite-scroll'
 import {
@@ -16,6 +17,11 @@ import CardForm from '../../components/Card/CardForm'
 import InputForm from '../../components/UI/Input/InputForm'
 import Button from '../../components/UI/Button'
 import Modal from '../../components/Modal'
+import {
+  setMessageToast,
+  setShowToast,
+  setStatusToast,
+} from '../../app/reducers/toast.slice'
 
 const TouristList = () => {
   const [page, setPage] = useState(1)
@@ -34,6 +40,7 @@ const TouristList = () => {
   })
   const [addTourist] = useCreateTouristMutation()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (data) {
@@ -63,9 +70,13 @@ const TouristList = () => {
       const { error } = res as ErrorAPI
 
       if (error) {
-        alert('Add Tourist Failed')
+        dispatch(setMessageToast('Add Tourist Failed'))
+        dispatch(setStatusToast('failed'))
+        dispatch(setShowToast(true))
       } else if (data) {
-        alert('Add Tourist Success')
+        dispatch(setMessageToast('Add Tourist Success'))
+        dispatch(setStatusToast('success'))
+        dispatch(setShowToast(true))
         navigate(`/tourist/${data.id}`)
       }
     })

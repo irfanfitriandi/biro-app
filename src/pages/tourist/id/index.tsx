@@ -14,6 +14,12 @@ import Button from '../../../components/UI/Button'
 import Modal from '../../../components/Modal'
 import CardForm from '../../../components/Card/CardForm'
 import InputForm from '../../../components/UI/Input/InputForm'
+import { useDispatch } from 'react-redux'
+import {
+  setMessageToast,
+  setShowToast,
+  setStatusToast,
+} from '../../../app/reducers/toast.slice'
 
 const TouristDetail = () => {
   const [tourist, setTourist] = useState<Tourist>()
@@ -25,6 +31,7 @@ const TouristDetail = () => {
   })
   const { id } = useParams()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const { data } = useGetTouristDetailQuery(String(id), {
     refetchOnMountOrArgChange: true,
@@ -52,9 +59,14 @@ const TouristDetail = () => {
       const { error } = res as ErrorAPI
 
       if (error) {
-        alert('Edit Tourist Failed')
+        dispatch(setMessageToast('Add Tourist Failed'))
+        dispatch(setStatusToast('failed'))
+        dispatch(setShowToast(true))
       } else if (data) {
-        alert('Edit Tourist Success')
+        dispatch(setMessageToast('Add Tourist Success'))
+        dispatch(setStatusToast('success'))
+        dispatch(setShowToast(true))
+        navigate(`/tourist/${data.id}`)
         setTourist(data)
         setModalEditTourist(!modalEditTourist)
       }
@@ -67,9 +79,14 @@ const TouristDetail = () => {
       const { error } = res as ErrorAPI
 
       if (error) {
-        alert('Delete Tourist Failed')
+        dispatch(setMessageToast('Add Tourist Failed'))
+        dispatch(setStatusToast('failed'))
+        dispatch(setShowToast(true))
       } else if (data) {
-        alert('Delete Tourist Success')
+        dispatch(setMessageToast('Add Tourist Success'))
+        dispatch(setStatusToast('success'))
+        dispatch(setShowToast(true))
+        navigate(`/tourist/${data.id}`)
         navigate('/tourist')
       }
     })

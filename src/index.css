@@ -7,6 +7,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   background-color: #eeebe3;
+  overflow-x: hidden;
 
   font-family: 'Montserrat', sans-serif;
   font-synthesis: none;

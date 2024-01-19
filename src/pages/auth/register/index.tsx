@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import { useCreateRegisterUserMutation } from '../../../app/services/api'
+import {
+  setMessageToast,
+  setShowToast,
+  setStatusToast,
+} from '../../../app/reducers/toast.slice'
 
 import CardForm from '../../../components/Card/CardForm'
 import InputForm from '../../../components/UI/Input/InputForm'
@@ -14,6 +20,7 @@ const RegisterPage = () => {
   const [disabled, setDisabled] = useState(true)
   const [register] = useCreateRegisterUserMutation()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (name && email && password) {
@@ -30,7 +37,9 @@ const RegisterPage = () => {
       email,
       password,
     }).then(() => {
-      alert('Register Success')
+      dispatch(setMessageToast('Register Success'))
+      dispatch(setStatusToast('success'))
+      dispatch(setShowToast(true))
       navigate('/login')
     })
   }

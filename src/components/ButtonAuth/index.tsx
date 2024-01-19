@@ -2,10 +2,15 @@ import { useCookies } from 'react-cookie'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { setAuthToken } from '../../app/auth.slice'
+import { setAuthToken } from '../../app/reducers/auth.slice'
 import { RootState } from '../../app/store'
 
 import Button from '../UI/Button'
+import {
+  setMessageToast,
+  setShowToast,
+  setStatusToast,
+} from '../../app/reducers/toast.slice'
 
 const ButtonAuth = () => {
   const [, , removeCookie] = useCookies(['token', 'id'])
@@ -15,7 +20,9 @@ const ButtonAuth = () => {
   const isLogin = !!authState.token
 
   const handleLogOut = () => {
-    alert('You`ve Been Logged Out')
+    dispatch(setMessageToast('You`ve been logged out'))
+    dispatch(setStatusToast('success'))
+    dispatch(setShowToast(true))
     dispatch(setAuthToken(null))
     removeCookie('token')
     removeCookie('id')

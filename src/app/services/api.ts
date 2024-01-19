@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { RootState } from '../store'
-import { setAuthToken } from '../auth.slice'
+import { setAuthToken } from '../reducers/auth.slice'
 import { API_URL } from '../../utils/constants/biroapi'
 import { DataUser } from '../../utils/types/user'
 import { Tourist, TouristForm, TouristListRes } from '../../utils/types/tourist'

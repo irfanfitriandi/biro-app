@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import { useCreateLoginUserMutation } from '../../../app/services/api'
 import { ErrorAPI } from '../../../utils/types/api'
@@ -7,6 +8,11 @@ import { ErrorAPI } from '../../../utils/types/api'
 import CardForm from '../../../components/Card/CardForm'
 import InputForm from '../../../components/UI/Input/InputForm'
 import Button from '../../../components/UI/Button'
+import {
+  setMessageToast,
+  setShowToast,
+  setStatusToast,
+} from '../../../app/reducers/toast.slice'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
@@ -17,6 +23,8 @@ const LoginPage = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (email && password) {
@@ -36,9 +44,13 @@ const LoginPage = () => {
         const { error } = res as ErrorAPI
 
         if (error) {
-          alert('Login Failed')
+          dispatch(setMessageToast('Login Failed'))
+          dispatch(setStatusToast('failed'))
+          dispatch(setShowToast(true))
         } else {
-          alert('Login Success')
+          dispatch(setMessageToast('Login Success'))
+          dispatch(setStatusToast('success'))
+          dispatch(setShowToast(true))
           if (queryParams.get('callback')) {
             navigate(String(queryParams.get('callback')))
           } else {
