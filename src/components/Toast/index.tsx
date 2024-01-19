@@ -22,7 +22,7 @@ const Toast = ({ isShow, status, message }: IToast) => {
   return (
     <button
       onClick={() => dispatch(setShowToast(false))}
-      className={`${isShow ? 'translate-x-0' : 'translate-x-[150%]'} ${status === 'success' ? 'bg-[#54C0EB]' : 'bg-[#FF7058] '} absolute bottom-36 right-4 w-fit cursor-pointer whitespace-nowrap rounded-md bg-[#54C0EB] py-2 pl-4 pr-10 text-start text-white transition-transform duration-500 ease-in-out`}
+      className={`${isShow ? 'translate-x-0' : 'translate-x-[150%]'} ${status === 'success' ? 'bg-[#54C0EB]' : 'bg-[#FF7058] '} fixed bottom-36 right-4 w-fit cursor-pointer whitespace-nowrap rounded-md bg-[#54C0EB] py-2 pl-4 pr-10 text-start text-white transition-transform duration-500 ease-in-out`}
     >
       <div className="fp font-medium capitalize">{status}</div>
       <span className="text-sm">{message}</span>
