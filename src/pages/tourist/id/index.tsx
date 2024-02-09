@@ -1,22 +1,16 @@
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import { setToast } from '@/app/reducers/toast.slice'
 import {
   useDeleteTouristMutation,
   useEditTouristMutation,
   useGetTouristDetailQuery,
-} from '../../../app/services/api'
-import { useTitle } from '../../../hooks/use-title-head'
+} from '@/app/services/api'
+import { useTitle } from '@/hooks'
 
-import { Tourist } from '../../../utils/types/tourist'
-import { ErrorAPI } from '../../../utils/types/api'
-
-import Logo from '../../../components/Logo'
-import Button from '../../../components/UI/Button'
-import Modal from '../../../components/Modal'
-import CardForm from '../../../components/Card/CardForm'
-import InputForm from '../../../components/UI/Input/InputForm'
-import { useDispatch } from 'react-redux'
-import { setToast } from '../../../app/reducers/toast.slice'
+import { Button, CardForm, InputForm, Logo, Modal } from '@/components'
+import { ErrorAPI, Tourist } from '@/utils/types'
 
 const TouristDetail = () => {
   const [tourist, setTourist] = useState<Tourist>()

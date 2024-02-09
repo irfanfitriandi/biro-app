@@ -1,15 +1,13 @@
 import { useSelector } from 'react-redux'
-import { RootState } from '../../../app/store'
+import { RootState } from '@/app/store'
 
-import ButtonProfile from '../../ButtonProfile'
-import ButtonAuth from '../../ButtonAuth'
-import Logo from '../../Logo'
+import { ButtonAuth, ButtonProfile, Logo } from '@/components'
 
 interface IHeader {
   isFixed: boolean
 }
 
-const Header = ({ isFixed }: IHeader) => {
+export const Header = ({ isFixed }: IHeader) => {
   const authState = useSelector((state: RootState) => state.auth)
   const isLogin = !!authState.token
 
@@ -25,5 +23,3 @@ const Header = ({ isFixed }: IHeader) => {
     </header>
   )
 }
-
-export default Header

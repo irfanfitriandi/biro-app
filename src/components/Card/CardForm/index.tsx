@@ -6,7 +6,12 @@ interface ICardForm extends HTMLAttributes<HTMLDivElement> {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
-const CardForm = ({ title, children, handleSubmit, ...props }: ICardForm) => {
+export const CardForm = ({
+  title,
+  children,
+  handleSubmit,
+  ...props
+}: ICardForm) => {
   return (
     <div
       className="space-y-10 rounded-3xl bg-[#f4f2ed] px-6 py-8 shadow-md shadow-black/10"
@@ -19,5 +24,3 @@ const CardForm = ({ title, children, handleSubmit, ...props }: ICardForm) => {
     </div>
   )
 }
-
-export default CardForm

@@ -1,12 +1,11 @@
-import React from 'react'
-import Header from './Header'
-import Footer from './Footer'
+import { ReactNode } from 'react'
+import { Footer, Header } from '..'
 
 interface ILayout {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-const Layout = ({ children }: ILayout) => {
+export const Layout = ({ children }: ILayout) => {
   return (
     <>
       <Header isFixed />
@@ -15,5 +14,3 @@ const Layout = ({ children }: ILayout) => {
     </>
   )
 }
-
-export default Layout

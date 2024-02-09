@@ -2,7 +2,7 @@ interface ILoading {
   loadingPage: boolean
 }
 
-const LoadingSpinner = ({ loadingPage }: ILoading) => {
+export const LoadingSpinner = ({ loadingPage }: ILoading) => {
   return (
     <div className="absolute bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 transform">
       <div
@@ -11,5 +11,3 @@ const LoadingSpinner = ({ loadingPage }: ILoading) => {
     </div>
   )
 }
-
-export default LoadingSpinner

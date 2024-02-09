@@ -4,7 +4,7 @@ interface IModal {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Modal = ({ children, showModal, setShowModal }: IModal) => {
+export const Modal = ({ children, showModal, setShowModal }: IModal) => {
   return (
     <>
       <button
@@ -21,5 +21,3 @@ const Modal = ({ children, showModal, setShowModal }: IModal) => {
     </>
   )
 }
-
-export default Modal

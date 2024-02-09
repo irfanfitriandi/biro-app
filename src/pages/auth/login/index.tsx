@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { useCreateLoginUserMutation } from '@/app/services/api'
+import { setToast } from '@/app/reducers/toast.slice'
 
-import { useCreateLoginUserMutation } from '../../../app/services/api'
-import { ErrorAPI } from '../../../utils/types/api'
-
-import CardForm from '../../../components/Card/CardForm'
-import InputForm from '../../../components/UI/Input/InputForm'
-import Button from '../../../components/UI/Button'
-import { setToast } from '../../../app/reducers/toast.slice'
+import { Button, CardForm, InputForm } from '@/components'
+import { ErrorAPI } from '@/utils/types'
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')

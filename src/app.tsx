@@ -2,13 +2,12 @@ import { Suspense } from 'react'
 import { useCookies } from 'react-cookie'
 import { RouterProvider } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import routes from './routes'
 
 import { RootState } from './app/store'
 import { setAuthToken } from './app/reducers/auth.slice'
 
-import routes from '../src/routes'
-import Loading from './components/UI/LoadingSpinner'
-import Toast from './components/Toast'
+import { LoadingSpinner, Toast } from './components'
 
 const App = () => {
   const [cookie] = useCookies(['token'])
@@ -23,7 +22,7 @@ const App = () => {
   }
 
   return (
-    <Suspense fallback={<Loading loadingPage />}>
+    <Suspense fallback={<LoadingSpinner loadingPage />}>
       <RouterProvider router={routes} />
       <Toast toast={toastState.toast} />
     </Suspense>

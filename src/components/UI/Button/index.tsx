@@ -6,7 +6,7 @@ interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   fit?: boolean
 }
 
-const Button = ({ label, sources, fit, ...props }: IButton) => {
+export const Button = ({ label, sources, fit, ...props }: IButton) => {
   const buttonType = (sources: 'primary' | 'secondary' | 'danger') => {
     switch (sources) {
       case 'primary':
@@ -26,5 +26,3 @@ const Button = ({ label, sources, fit, ...props }: IButton) => {
     </button>
   )
 }
-
-export default Button

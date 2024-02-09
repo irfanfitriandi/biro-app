@@ -2,22 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { useInfiniteScroll } from '../../hooks/use-infinite-scroll'
 import {
   useCreateTouristMutation,
   useGetTouristListQuery,
-} from '../../app/services/api'
-import { Tourist } from '../../utils/types/tourist'
-import { ErrorAPI } from '../../utils/types/api'
+} from '@/app/services/api'
+import { setToast } from '@/app/reducers/toast.slice'
+import { useInfiniteScroll } from '@/hooks'
 
-import LoadingSpinner from '../../components/UI/LoadingSpinner'
-import CardTourist from '../../components/Card/CardTourist'
-import Header from '../../components/Layout/Header'
-import CardForm from '../../components/Card/CardForm'
-import InputForm from '../../components/UI/Input/InputForm'
-import Button from '../../components/UI/Button'
-import Modal from '../../components/Modal'
-import { setToast } from '../../app/reducers/toast.slice'
+import {
+  Button,
+  CardForm,
+  CardTourist,
+  Header,
+  InputForm,
+  LoadingSpinner,
+  Modal,
+} from '@/components'
+import { ErrorAPI, Tourist } from '@/utils/types'
 
 const TouristList = () => {
   const [page, setPage] = useState(1)

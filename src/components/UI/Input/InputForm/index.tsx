@@ -4,7 +4,7 @@ interface IInputForm extends InputHTMLAttributes<HTMLInputElement> {
   label: string
 }
 
-const InputForm = ({ label, ...props }: IInputForm) => {
+export const InputForm = ({ label, ...props }: IInputForm) => {
   return (
     <div className="space-y-1">
       <label className="text-lg font-medium">{label}</label>
@@ -15,5 +15,3 @@ const InputForm = ({ label, ...props }: IInputForm) => {
     </div>
   )
 }
-
-export default InputForm

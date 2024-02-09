@@ -1,14 +1,13 @@
-import { useCookies } from 'react-cookie'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 
-import { setAuthToken } from '../../app/reducers/auth.slice'
-import { RootState } from '../../app/store'
+import { setAuthToken } from '@/app/reducers/auth.slice'
+import { setToast } from '@/app/reducers/toast.slice'
+import { RootState } from '@/app/store'
+import { Button } from '..'
 
-import Button from '../UI/Button'
-import { setToast } from '../../app/reducers/toast.slice'
-
-const ButtonAuth = () => {
+export const ButtonAuth = () => {
   const [, , removeCookie] = useCookies(['token', 'id'])
   const authState = useSelector((state: RootState) => state.auth)
   const dispatch = useDispatch()
@@ -38,5 +37,3 @@ const ButtonAuth = () => {
     />
   )
 }
-
-export default ButtonAuth

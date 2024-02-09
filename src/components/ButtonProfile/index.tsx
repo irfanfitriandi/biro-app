@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 
-const ButtonProfile = () => {
+export const ButtonProfile = () => {
   const [cookie] = useCookies(['id'])
 
   return (
@@ -13,5 +13,3 @@ const ButtonProfile = () => {
     </Link>
   )
 }
-
-export default ButtonProfile

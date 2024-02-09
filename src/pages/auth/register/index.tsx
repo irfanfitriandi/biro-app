@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { useCreateRegisterUserMutation } from '@/app/services/api'
+import { setToast } from '@/app/reducers/toast.slice'
 
-import { useCreateRegisterUserMutation } from '../../../app/services/api'
-import { setToast } from '../../../app/reducers/toast.slice'
-
-import CardForm from '../../../components/Card/CardForm'
-import InputForm from '../../../components/UI/Input/InputForm'
-import Button from '../../../components/UI/Button'
+import { Button, CardForm, InputForm } from '@/components'
 
 const RegisterPage = () => {
   const [name, setName] = useState('')

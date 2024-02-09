@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
-import { Tourist } from '../../../utils/types/tourist'
+import { Tourist } from '@/utils/types'
 
 interface ICardTourist {
   data: Tourist
 }
-const CardTourist = ({ data }: ICardTourist) => {
+
+export const CardTourist = ({ data }: ICardTourist) => {
   return (
     <Link
       to={`/tourist/${data.id}`}
@@ -26,5 +27,3 @@ const CardTourist = ({ data }: ICardTourist) => {
     </Link>
   )
 }
-
-export default CardTourist

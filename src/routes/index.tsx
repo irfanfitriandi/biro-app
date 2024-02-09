@@ -1,18 +1,19 @@
+// import { PrivateRoutes } from '@/components'
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
 /* eslint-disable */
-const PrivateRoutes = lazy(() => import('../components/PrivateRoutes'))
-const HomePage = lazy(() => import('../pages'))
-const Profile = lazy(() => import('../pages/profile'))
+const PrivateRoutes = lazy(() => import('@/components/PrivateRoutes'))
+const HomePage = lazy(() => import('@/pages'))
+const Profile = lazy(() => import('@/pages/profile'))
 
 //Auth pages
-const Login = lazy(() => import('../pages/auth/login'))
-const Register = lazy(() => import('../pages/auth/register'))
+const Login = lazy(() => import('@/pages/auth/login'))
+const Register = lazy(() => import('@/pages/auth/register'))
 
 //Tourist pages
-const TouristList = lazy(() => import('../pages/tourist'))
-const TouristDetail = lazy(() => import('../pages/tourist/id'))
+const TouristList = lazy(() => import('@/pages/tourist'))
+const TouristDetail = lazy(() => import('@/pages/tourist/id'))
 /* eslint-enable */
 
 const routes = createBrowserRouter([

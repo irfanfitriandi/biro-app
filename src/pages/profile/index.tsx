@@ -1,9 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { useGetLoginUserInfoQuery } from '../../app/services/api'
-import { useTitle } from '../../hooks/use-title-head'
+import { useGetLoginUserInfoQuery } from '@/app/services/api'
+import { useTitle } from '@/hooks'
 
-import Logo from '../../components/Logo'
-import ButtonAuth from '../../components/ButtonAuth'
+import { ButtonAuth, Logo } from '@/components'
 
 const ProfilePage = () => {
   const { id } = useParams()

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import Button from '../components/UI/Button'
-import Header from '../components/Layout/Header'
+import { Button, Header } from '@/components'
 
 const HomePage = () => {
   return (

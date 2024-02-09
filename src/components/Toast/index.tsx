@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setToast } from '../../app/reducers/toast.slice'
-import { RootState } from '../../app/store'
+
+import { RootState } from '@/app/store'
+import { setToast } from '@/app/reducers/toast.slice'
 
 export interface IToast {
   toast: {
@@ -11,7 +12,7 @@ export interface IToast {
   }
 }
 
-const Toast = ({ toast }: IToast) => {
+export const Toast = ({ toast }: IToast) => {
   const dispatch = useDispatch()
   const toastState = useSelector((state: RootState) => state.toast)
 
@@ -35,5 +36,3 @@ const Toast = ({ toast }: IToast) => {
     </button>
   )
 }
-
-export default Toast

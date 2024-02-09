@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { RootState } from '../../app/store'
+import { RootState } from '@/app/store'
 
 interface IPrivateRoutes {
   Component: () => JSX.Element
